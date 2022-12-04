@@ -21,15 +21,19 @@ def puzzle_two
     elf1 = input[0].split('-').map(&:to_i)
     elf2 = input[1].split('-').map(&:to_i)
 
+    # initialise hash of range min-max
     elf_hash = {}
     ((elf1 + elf2).min..(elf1 + elf2).max).to_a.each { |i| elf_hash[i] = 0 }
-    p elf1[1]
+
+    # increment hash value by one for each elf range
     (elf1[0]..elf1[1]).each do |n|
       elf_hash[n] += 1
     end
     (elf2[0]..elf2[1]).each do |n|
       elf_hash[n] += 1
     end
+
+    # if hash contains a value of 2 then the ranges intersect.
     cover_count += 1 if elf_hash.value?(2)
   end
   puts("Answer to puzzle two is #{cover_count}")
